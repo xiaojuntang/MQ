@@ -107,7 +107,7 @@ namespace Common.Msg.MQ
                 message.Body = msgBody;//消息主体
                 message.ResponseQueue = _queue; //将消息加入到发送队列
                 //message.AttachSenderId = true;
-                //message.Formatter = new XmlMessageFormatter(new Type[] { objType });
+                message.Formatter = new XmlMessageFormatter(new Type[] { objType });
                 _queue.Send(message);
                 return true;
             }
@@ -117,7 +117,10 @@ namespace Common.Msg.MQ
             }
         }
 
-
+        /// <summary>
+        /// 同步接收消息
+        /// </summary>
+        /// <returns></returns>
         private static object Receive()
         {
             Message msg = null;
@@ -153,5 +156,5 @@ namespace Common.Msg.MQ
     {
         UserMsg,
         LogMsg
-    }
+    } 
 }
